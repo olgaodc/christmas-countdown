@@ -1,4 +1,28 @@
 .countdownWrapper {
+    min-height: 100vh;
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+.countdown {
+    /* background-color: rgba(160, 157, 157, 0.288); */
+    background-color: #ad8686;
+    padding: 20px;
+    width: 500px;
+    /* color: #a1a1f3; */
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.title {
+    margin: 0 0 15px;
+    text-align: center;
+}
+
+.timer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
