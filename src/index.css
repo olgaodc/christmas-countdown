@@ -4,7 +4,8 @@
 
 body {
   margin: 0;
-  font-family: 'Tilt Neon', sans-serif;
+  font-family: 'Lato', sans-serif;
+  color: #e1dfdf;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

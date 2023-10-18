@@ -1,14 +1,30 @@
 .contentWrapper {
     min-height: 100vh;
-    background-image: url('../../assets/cozy-christmas.jpg');
+    background-image: url('../../assets/christmas-tree-wallpaper.jpg');
     width: 100%;
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: top -50px center;
-    /* background-position: top -80px center; */
+    background-position: center center;
+}
+
+.contentWrapper::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.284);
 }
 
 .container {
     max-width: 1300px;
     margin: 0 auto;
+    padding: 0 30px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
 }

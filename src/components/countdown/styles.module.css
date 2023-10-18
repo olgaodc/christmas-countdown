@@ -1,28 +1,90 @@
 .countdownWrapper {
     min-height: 100vh;
     display: flex;
-    justify-content: center;
     align-items: center;
+    position: relative;
+    z-index: 5;
 }
 
 .countdown {
-    /* background-color: rgba(160, 157, 157, 0.288); */
-    background-color: #ad8686;
-    padding: 20px;
-    width: 500px;
-    /* color: #a1a1f3; */
     display: flex;
-    justify-content: center;
     flex-direction: column;
 }
 
+.subtitle {
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0;
+}
+
 .title {
-    margin: 0 0 15px;
-    text-align: center;
+    font-size: 90px;
+    margin: 10px 0 50px;
 }
 
 .timer {
     display: flex;
     justify-content: center;
+    flex-direction: column;
     gap: 20px;
+}
+
+.daySectionBottom {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.daySection, .timerSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.day {
+    font-size: 110px;
+}
+
+.dayTitle {
+    font-size: 28px;
+}
+
+.timerNumber {
+    font-size: 50px;
+}
+
+.timerTitle {
+    font-size: 20px;
+}
+
+@media (max-width: 768px) {
+    .countdownWrapper {
+        justify-content: center;
+    }
+
+    .countdown {
+        align-items: center;
+    }
+
+    .title {
+        font-size: 60px;
+        margin: 5px 0 40px;
+    }
+
+    .day {
+        font-size: 86px;
+    }
+    
+    .dayTitle {
+        font-size: 26px;
+    }
+    
+    .timerNumber {
+        font-size: 40px;
+    }
+    
+    .timerTitle {
+        font-size: 18px;
+    }
 }

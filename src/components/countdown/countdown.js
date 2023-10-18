@@ -44,24 +44,30 @@ const Countdown = () => {
     <div className={styles.countdownWrapper}>
       {loading ? (<Spinner />) : (
         <div className={styles.countdown}>
-          <h1 className={styles.title}>Countdown</h1>
+          <h1 className={styles.subtitle}>How many days until</h1>
+          <h2 className={styles.title}>Christmas</h2>
           <div className={styles.timer}>
-            <div className={styles.timerSection}>
-              <span id='days'>{days}</span>
-              <span>days</span>
+            <div className={styles.daySectionTop}>
+              <div className={styles.daySection}>
+                <span className={styles.day}>{days}</span>
+                <span className={styles.dayTitle}>days</span>
+              </div>
             </div>
-            <div className={styles.timerSection}>
-              <span id='hours'>{hours}</span>
-              <span>hours</span>
+            <div className={styles.daySectionBottom}>
+              <div className={styles.timerSection}>
+                <span className={styles.timerNumber}>{hours}</span>
+                <span className={styles.timerTitle}>hours</span>
+              </div>
+              <div className={styles.timerSection}>
+                <span className={styles.timerNumber}>{minutes}</span>
+                <span className={styles.timerTitle}>minutes</span>
+              </div>
+              <div className={styles.timerSection}>
+                <span className={styles.timerNumber}>{seconds}</span>
+                <span className={styles.timerTitle}>seconds</span>
+              </div>
             </div>
-            <div className={styles.timerSection}>
-              <span id='minutes'>{minutes}</span>
-              <span>minutes</span>
-            </div>
-            <div className={styles.timerSection}>
-              <span id='seconds'>{seconds}</span>
-              <span>seconds</span>
-            </div>
+
           </div>
         </div>
       )}

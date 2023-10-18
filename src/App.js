@@ -47,7 +47,9 @@ function App() {
               straight: false
             }
           }
-        }} init={init} />
+        }} 
+        init={init} 
+      />
     </BrowserRouter>
   );
 }
