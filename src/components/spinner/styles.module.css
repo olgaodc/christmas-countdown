@@ -1,3 +1,9 @@
+.spinnerWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .spinner {
     display: inline-block;
     width: 80px;

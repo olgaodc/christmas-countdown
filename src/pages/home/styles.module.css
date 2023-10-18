@@ -1,6 +1,7 @@
 .contentWrapper {
     min-height: 100vh;
     background-image: url('../../assets/christmas-tree-wallpaper.jpg');
+    background-color: #004E3E;
     width: 100%;
     background-repeat: no-repeat;
     background-size: cover;

@@ -6,6 +6,7 @@ body {
   margin: 0;
   font-family: 'Lato', sans-serif;
   color: #e1dfdf;
+  min-width: 320px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
