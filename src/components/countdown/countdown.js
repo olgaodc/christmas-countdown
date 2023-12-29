@@ -11,7 +11,7 @@ const Countdown = () => {
 
   const countdown = () => {
     const today = new Date().getTime();
-    const christmasDay = new Date('December 25, 2023 00:00:00').getTime();
+    const christmasDay = new Date('December 25, 2024 00:00:00').getTime();
 
     const timeDifference = christmasDay - today;
 
