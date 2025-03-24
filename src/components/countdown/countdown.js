@@ -1,6 +1,6 @@
-import Spinner from '../spinner/spinner';
-import styles from './styles.module.css';
-import { useEffect, useState } from 'react';
+import Spinner from "../spinner/spinner";
+import styles from "./styles.module.css";
+import { useEffect, useState } from "react";
 
 const Countdown = () => {
   const [days, setDays] = useState(0);
@@ -11,7 +11,7 @@ const Countdown = () => {
 
   const countdown = () => {
     const today = new Date().getTime();
-    const christmasDay = new Date('December 25, 2024 00:00:00').getTime();
+    const christmasDay = new Date("December 25, 2025 00:00:00").getTime();
 
     const timeDifference = christmasDay - today;
 
@@ -25,24 +25,26 @@ const Countdown = () => {
     let timeMinutes = Math.floor((timeDifference % hours) / minutes);
     let timeSeconds = Math.floor((timeDifference % minutes) / seconds);
 
-    timeHours = timeHours < 10 ? '0' + timeHours : timeHours;
-    timeMinutes = timeMinutes < 10 ? '0' + timeMinutes : timeMinutes;
-    timeSeconds = timeSeconds < 10 ? '0' + timeSeconds : timeSeconds;
+    timeHours = timeHours < 10 ? "0" + timeHours : timeHours;
+    timeMinutes = timeMinutes < 10 ? "0" + timeMinutes : timeMinutes;
+    timeSeconds = timeSeconds < 10 ? "0" + timeSeconds : timeSeconds;
 
     setDays(timeDays);
     setHours(timeHours);
     setMinutes(timeMinutes);
     setSeconds(timeSeconds);
     setLoading(false);
-  }
+  };
 
   useEffect(() => {
     setInterval(countdown, 1000);
-  }, [])
+  }, []);
 
   return (
     <div className={styles.countdownWrapper}>
-      {loading ? (<Spinner />) : (
+      {loading ? (
+        <Spinner />
+      ) : (
         <div className={styles.countdown}>
           <h1 className={styles.subtitle}>How many days until</h1>
           <h2 className={styles.title}>Christmas</h2>
@@ -67,12 +69,11 @@ const Countdown = () => {
                 <span className={styles.timerTitle}>seconds</span>
               </div>
             </div>
-
           </div>
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Countdown
+export default Countdown;
