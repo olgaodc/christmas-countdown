@@ -11,7 +11,16 @@ const Countdown = () => {
 
   const countdown = () => {
     const today = new Date().getTime();
-    const christmasDay = new Date("December 25, 2025 00:00:00").getTime();
+
+    const currentYear = new Date().getFullYear();
+    let christmasDay = new Date(
+      `December 25, ${currentYear} 00:00:00`
+    ).getTime();
+
+    if (today > christmasDay) {
+      const nextYear = currentYear + 1;
+      christmasDay = new Date(`December 25, ${nextYear} 00:00:00`).getTime();
+    }
 
     const timeDifference = christmasDay - today;
 
