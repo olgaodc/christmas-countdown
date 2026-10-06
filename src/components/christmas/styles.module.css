@@ -1,0 +1,469 @@
+.christmas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  margin: 0;
+  font-size: 74px;
+  text-align: center;
+}
+
+.gift {
+  /* DĖŽUTĖS DYDIS: 1 = pradinis, 1.17 ≈ +30px dėžės pločio.
+     Keičiant šį skaičių proporcingai keičiasi visa dovana. */
+  --s: 1;
+
+  --box-light: #d8283f;
+  --box-mid: #b3122b;
+  --box-dark: #7d0a1d;
+  --inside-1: #4a0716;
+  --inside-2: #6c0c1f;
+  --rib-dark: #a8740a;
+  --rib-mid: #e3b53a;
+  --rib-light: #fff0a6;
+  --accent: #b3122b;
+
+  position: relative;
+  width: calc(200px * var(--s));
+  height: calc(200px * var(--s));
+  margin: 140px 0 40px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.25s ease;
+}
+
+.gift:hover {
+  transform: scale(1.05);
+}
+
+.gift:hover .shake {
+  animation: none;
+}
+
+.gift:focus-visible {
+  outline: 3px solid #f2c94c;
+  outline-offset: 14px;
+  border-radius: 12px;
+}
+
+.shake {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 100%;
+  animation: giftShake 1.6s ease-in-out 1.4s infinite;
+}
+
+.gift.open .shake {
+  animation: none;
+}
+
+.shadow {
+  position: absolute;
+  left: calc(-10px * var(--s));
+  right: calc(-10px * var(--s));
+  bottom: calc(-14px * var(--s));
+  height: calc(28px * var(--s));
+  background:
+    radial-gradient(
+      ellipse 45% 40% at 50% 45%,
+      rgba(0, 0, 0, 0.38),
+      transparent 100%
+    ),
+    radial-gradient(ellipse at center, rgba(0, 0, 0, 0.18), transparent 70%);
+}
+
+/* ---------- DĖŽĖ ---------- */
+
+.box {
+  position: absolute;
+  z-index: 2;
+  left: calc(12px * var(--s));
+  bottom: 0;
+  width: calc(176px * var(--s));
+  height: calc(118px * var(--s));
+  border-radius: 3px 3px 7px 7px;
+
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.03) 0 2px,
+      rgba(0, 0, 0, 0.03) 2px 4px
+    ),
+    linear-gradient(
+      105deg,
+      rgba(255, 255, 255, 0.24) 0%,
+      rgba(255, 255, 255, 0.06) 24%,
+      transparent 40%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.3) 0,
+      transparent 9%,
+      transparent 90%,
+      rgba(0, 0, 0, 0.38) 100%
+    ),
+    linear-gradient(
+      180deg,
+      var(--box-light) 0%,
+      var(--box-mid) 45%,
+      var(--box-dark) 100%
+    );
+
+  box-shadow:
+    0 18px 24px -8px rgba(0, 0, 0, 0.4),
+    inset 0 -12px 16px rgba(0, 0, 0, 0.2),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+}
+
+.box::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc(24px * var(--s));
+  background: linear-gradient(rgba(0, 0, 0, 0.42), transparent);
+  transition: opacity 0.3s ease;
+}
+
+.gift.open .box::after {
+  opacity: 0;
+}
+
+/* ---------- DANGTELIS ---------- */
+
+.lid {
+  position: absolute;
+  z-index: 3;
+  left: 0;
+  bottom: calc(108px * var(--s));
+  width: calc(200px * var(--s));
+  height: calc(38px * var(--s));
+  border-radius: 4px;
+
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.03) 0 2px,
+      rgba(0, 0, 0, 0.03) 2px 4px
+    ),
+    linear-gradient(
+      105deg,
+      rgba(255, 255, 255, 0.26) 0%,
+      rgba(255, 255, 255, 0.06) 25%,
+      transparent 40%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.3) 0,
+      transparent 7%,
+      transparent 93%,
+      rgba(0, 0, 0, 0.38) 100%
+    ),
+    linear-gradient(180deg, var(--box-light), var(--box-mid));
+
+  box-shadow:
+    0 10px 14px rgba(0, 0, 0, 0.3),
+    inset 0 2px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -8px 10px rgba(0, 0, 0, 0.2);
+
+  transform-origin: center;
+  transition:
+    transform 0.75s cubic-bezier(0.2, 0.9, 0.3, 1.15) 0.55s,
+    box-shadow 0.3s ease 0.55s;
+}
+
+.lid::before {
+  content: "";
+  position: absolute;
+  left: calc(7px * var(--s));
+  right: calc(7px * var(--s));
+  top: calc(-12px * var(--s));
+  height: calc(12px * var(--s));
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0.12)),
+    var(--box-light);
+  clip-path: polygon(5% 0, 95% 0, 100% 100%, 0 100%);
+}
+
+.gift.open .lid {
+  transform: translate(calc(-80px * var(--s)), calc(-100px * var(--s)))
+    rotate(-25deg);
+  box-shadow:
+    0 18px 18px rgba(0, 0, 0, 0.18),
+    inset 0 2px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -8px 10px rgba(0, 0, 0, 0.2);
+  transition:
+    transform 0.75s cubic-bezier(0.2, 0.9, 0.3, 1.15),
+    box-shadow 0.3s ease;
+}
+
+/* ---------- SATINO JUOSTELĖ ---------- */
+
+.ribbonVertical {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: calc(26px * var(--s));
+  transform: translateX(-50%);
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.07) 0 1px,
+      transparent 1px 3px
+    ),
+    linear-gradient(
+      90deg,
+      var(--rib-dark) 0%,
+      var(--rib-mid) 22%,
+      var(--rib-light) 48%,
+      var(--rib-mid) 74%,
+      var(--rib-dark) 100%
+    );
+  box-shadow:
+    -1px 0 0 rgba(0, 0, 0, 0.2),
+    1px 0 0 rgba(0, 0, 0, 0.2),
+    0 0 8px rgba(0, 0, 0, 0.18);
+}
+
+.lid > .ribbonVertical {
+  top: calc(-12px * var(--s));
+}
+
+/* ---------- KASPINAS ---------- */
+
+.bow {
+  position: absolute;
+  top: calc(-4px * var(--s));
+  left: 50%;
+  width: 0;
+  height: 0;
+  filter: drop-shadow(0 3px 2px rgba(0, 0, 0, 0.3));
+}
+
+.loop {
+  position: absolute;
+  bottom: 0;
+  width: calc(58px * var(--s));
+  height: calc(44px * var(--s));
+  border-radius: 50% 50% 50% 50% / 62% 62% 38% 38%;
+  -webkit-mask: radial-gradient(
+    ellipse 50% 42% at 50% 56%,
+    transparent 0 60%,
+    #000 62%
+  );
+  mask: radial-gradient(
+    ellipse 50% 42% at 50% 56%,
+    transparent 0 60%,
+    #000 62%
+  );
+}
+
+.loopLeft {
+  right: calc(-3px * var(--s));
+  transform: rotate(22deg);
+  background: linear-gradient(
+    135deg,
+    var(--rib-dark) 0%,
+    var(--rib-light) 38%,
+    var(--rib-mid) 62%,
+    var(--rib-dark) 100%
+  );
+}
+
+.loopRight {
+  left: calc(-3px * var(--s));
+  transform: rotate(-22deg);
+  background: linear-gradient(
+    225deg,
+    var(--rib-dark) 0%,
+    var(--rib-light) 38%,
+    var(--rib-mid) 62%,
+    var(--rib-dark) 100%
+  );
+}
+
+.tail {
+  position: absolute;
+  top: calc(-8px * var(--s));
+  left: calc(-8px * var(--s));
+  width: calc(16px * var(--s));
+  height: calc(36px * var(--s));
+  transform-origin: top center;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 82%, 0 100%);
+  background: linear-gradient(
+    90deg,
+    var(--rib-dark),
+    var(--rib-mid) 30%,
+    var(--rib-light) 55%,
+    var(--rib-dark)
+  );
+}
+
+.tailLeft {
+  transform: rotate(16deg);
+}
+
+.tailRight {
+  transform: rotate(-16deg);
+}
+
+.knot {
+  position: absolute;
+  top: calc(-24px * var(--s));
+  left: calc(-14px * var(--s));
+  width: calc(28px * var(--s));
+  height: calc(26px * var(--s));
+  border-radius: calc(9px * var(--s));
+  background: linear-gradient(
+    135deg,
+    var(--rib-light) 0%,
+    var(--rib-mid) 50%,
+    var(--rib-dark) 100%
+  );
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.18);
+}
+
+/* ---------- ŽINUTĖ (mažesnė kortelė) ---------- */
+
+.giftMessage {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  bottom: -22px;
+  transform: translate(-50%, 0) rotate(-3deg) scale(0.8);
+
+  width: max-content;
+  max-width: 220px;
+  padding: 9px 18px;
+  border-radius: 5px;
+  text-align: center;
+
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--box-dark);
+
+  background: linear-gradient(160deg, #fffaf0, #f6e9cf);
+  box-shadow:
+    0 8px 16px rgba(0, 0, 0, 0.35),
+    inset 0 0 0 1px rgba(168, 116, 10, 0.25);
+
+  opacity: 0;
+  transition:
+    opacity 0.2s ease 0.3s,
+    transform 0.5s cubic-bezier(0.5, 0, 0.9, 0.5);
+}
+
+/* plona auksinė rėmelio linija kortelės viduje */
+.giftMessage::before {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border: 1px solid var(--box-dark);
+  border-radius: 3px;
+  pointer-events: none;
+}
+
+.gift.open .giftMessage {
+  opacity: 1;
+  transform: translate(-50%, -185px) rotate(-3deg) scale(1);
+  transition:
+    opacity 0.5s ease 0.3s,
+    transform 0.7s cubic-bezier(0.2, 0.9, 0.3, 1.2) 0.3s;
+}
+
+/* ---------- KONFETI ---------- */
+
+.confetti {
+  position: absolute;
+  z-index: 4;
+  left: 50%;
+  bottom: calc(122px * var(--s));
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.piece {
+  position: absolute;
+  top: 0;
+  left: -4px;
+  width: 8px;
+  height: 14px;
+  border-radius: 2px;
+  background: var(--c);
+  opacity: 0;
+}
+
+.gift.open .piece {
+  animation: pop 1.2s ease-out var(--d) forwards;
+}
+
+/* ---------- ANIMACIJOS ---------- */
+
+@keyframes giftShake {
+  0%,
+  22%,
+  100% {
+    transform: none;
+  }
+  3% {
+    transform: translateY(-4px) rotate(-4deg);
+  }
+  6% {
+    transform: translateY(0) rotate(4deg);
+  }
+  9% {
+    transform: translateY(-3px) rotate(-4deg);
+  }
+  12% {
+    transform: translateY(0) rotate(3deg);
+  }
+  15% {
+    transform: rotate(-2deg);
+  }
+  18% {
+    transform: rotate(1deg);
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: translate(0, 0) rotate(0) scale(0.5);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  60% {
+    transform: translate(var(--x), var(--y)) rotate(var(--r)) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(calc(var(--x) * 1.3), calc(var(--y) + 140px))
+      rotate(calc(var(--r) * 1.5)) scale(1);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shake,
+  .piece {
+    animation: none !important;
+  }
+
+  .gift .lid,
+  .gift .giftMessage {
+    transition-duration: 0.01s !important;
+    transition-delay: 0s !important;
+  }
+}
