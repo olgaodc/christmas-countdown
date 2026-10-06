@@ -1,12 +1,11 @@
-import React from 'react';
-import styles from './styles.module.css';
+import styles from "./styles.module.css";
 
 const Spinner = () => {
   return (
     <div className={styles.spinnerWrapper}>
       <div className={styles.spinner}></div>
-    </div>  
-  )
-}
+    </div>
+  );
+};
 
-export default Spinner
+export default Spinner;
